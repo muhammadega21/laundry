@@ -35,7 +35,7 @@ INSERT INTO
     )
 VALUES (1, 'Cuci Kiloan', 7000),
     (2, 'Setrika', 4000),
-    (3, 'Express', 10000);
+    (3, 'Laundry Express', 10000);
 
 CREATE TABLE transaksi (
     id_transaksi int PRIMARY KEY AUTO_INCREMENT,

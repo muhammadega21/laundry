@@ -28,6 +28,7 @@ if (isset($_POST['add_stock'])) {
     <title>Setting</title>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9' crossorigin='anonymous'>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -51,32 +52,34 @@ if (isset($_POST['add_stock'])) {
             </div>
         </form>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Layanan</th>
-                    <th>Harga</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $result = $conn->query("SELECT * FROM layanan");
-                foreach ($result as $row):
-                ?>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= $row['nama_layanan'] ?></td>
-                        <td>Rp <?= number_format($row['harga'], 0, ',', '.') ?></td>
-                        <td>
-                            <a href='delete_layanan.php?id=<?= $row['id_layanan'] ?>' class='btn btn-danger btn-sm' onclick='return confirm("Hapus layanan ini?")'>Hapus</a>
-                        </td>
+                        <th>No</th>
+                        <th>Nama Layanan</th>
+                        <th>Harga</th>
+                        <th>Aksi</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    $result = $conn->query("SELECT * FROM layanan");
+                    foreach ($result as $row):
+                    ?>
+                        <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= $row['nama_layanan'] ?></td>
+                            <td>Rp <?= number_format($row['harga'], 0, ',', '.') ?></td>
+                            <td>
+                                <a href='delete_layanan.php?id=<?= $row['id_layanan'] ?>' class='btn btn-danger btn-sm' onclick='return confirm("Hapus layanan ini?")'><i class="bx bx-trash"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
 
         <hr>
 
@@ -98,34 +101,36 @@ if (isset($_POST['add_stock'])) {
             </div>
         </form>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nama Barang</th>
-                    <th>Stok</th>
-                    <th>Satuan</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $result = $conn->query("SELECT * FROM inventaris");
-                $no = 1;
-                foreach ($result as $row) :
-                ?>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= $row['nama_barang'] ?></td>
-                        <td><?= $row['stok'] ?></td>
-                        <td><?= $row['satuan'] ?></td>
-                        <td>
-                            <a href='delete_inventaris.php?id=<?= $row['id_inventaris'] ?>' class='btn btn-danger btn-sm' onclick='return confirm("Hapus stok ini?")'>Hapus</a>
-                        </td>
+                        <th>ID</th>
+                        <th>Nama Barang</th>
+                        <th>Stok</th>
+                        <th>Satuan</th>
+                        <th>Aksi</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php
+                    $result = $conn->query("SELECT * FROM inventaris");
+                    $no = 1;
+                    foreach ($result as $row) :
+                    ?>
+                        <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= $row['nama_barang'] ?></td>
+                            <td><?= $row['stok'] ?></td>
+                            <td><?= $row['satuan'] ?></td>
+                            <td>
+                                <a href='delete_inventaris.php?id=<?= $row['id_inventaris'] ?>' class='btn btn-danger btn-sm' onclick='return confirm("Hapus stok ini?")'><i class="bx bx-trash"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm' crossorigin='anonymous'></script>

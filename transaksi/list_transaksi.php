@@ -19,45 +19,47 @@ $transaksi = $conn->query("SELECT t.*, p.nama_pelanggan AS nama_pelanggan, l.nam
     <title>Transaksi</title>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9' crossorigin='anonymous'>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
     <?php require('../layouts/navbar.php') ?>
     <div class="container mt-4">
         <h2>Daftar Transaksi</h2>
-        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTransactionModal">Tambah Transaksi</button>
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addTransactionModal">Tambah Transaksi</button>
 
-        <!-- Tabel Transaksi -->
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Pelanggan</th>
-                    <th>Layanan</th>
-                    <th>Jumlah (Kg/Satuan)</th>
-                    <th>Total (Rp)</th>
-                    <th>Tanggal</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $no = 1;
-
-                foreach ($transaksi as $row):
-
-                ?>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= $row['nama_pelanggan']; ?></td>
-                        <td><?= $row['nama_layanan']; ?></td>
-                        <td><?= $row['jumlah']; ?></td>
-                        <td><?= number_format($row['total'], 0, ',', '.'); ?></td>
-                        <td><?= date_format(date_create($row['tanggal_transaksi']), 'l, d F Y'); ?></td>
-                        <td><a href='delete_transaksi.php?id=<?= $row['id'] ?>' class='btn btn-danger btn-sm' onclick='return confirm("Hapus transaksi ini?")'>Hapus</a></td>
+                        <th>No</th>
+                        <th>Pelanggan</th>
+                        <th>Layanan</th>
+                        <th>Jumlah (Kg/Satuan)</th>
+                        <th>Total (Rp)</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php $no = 1;
+
+                    foreach ($transaksi as $row):
+
+                    ?>
+                        <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= $row['nama_pelanggan']; ?></td>
+                            <td><?= $row['nama_layanan']; ?></td>
+                            <td><?= $row['jumlah']; ?></td>
+                            <td><?= number_format($row['total'], 0, ',', '.'); ?></td>
+                            <td><?= date_format(date_create($row['tanggal_transaksi']), 'd F Y'); ?></td>
+                            <td><a href='delete_transaksi.php?id=<?= $row['id'] ?>' class='btn btn-danger btn-sm' onclick='return confirm("Hapus transaksi ini?")'><i class="bx bx-trash"></i></a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <?php require('tambah_transaksi.php') ?>

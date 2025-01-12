@@ -1,0 +1,12 @@
+nav {
+  background: #ff4191;
+}
+
+body {
+  background: #ffe2e2;
+}
+
+.table > :not(caption) > * > * {
+  background: #ff4191;
+  color: #fff;
+}
